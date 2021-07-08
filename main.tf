@@ -1,6 +1,6 @@
 locals {
   port                 = var.port == "" ? var.engine == "aurora-postgresql" ? "5432" : "3306" : var.port
-  master_password      = var.password == "" ? random_id.master_password.b64 : var.password
+  master_password      = var.password
   db_subnet_group_name = var.db_subnet_group_name == "" ? join("", aws_db_subnet_group.this.*.name) : var.db_subnet_group_name
   backtrack_window     = (var.engine == "aurora-mysql" || var.engine == "aurora") && var.engine_mode != "serverless" ? var.backtrack_window : 0
 
